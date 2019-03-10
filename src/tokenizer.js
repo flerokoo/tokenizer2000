@@ -17,6 +17,9 @@ let flushSequenceAsFactory = (sequences, output) => (name, type) => {
 }
 
 let insertTokenFactory = target => token => {
+    if (!token || typeof token.type !== 'string' || token.type.length === 0) {
+        throw new Error("Wrong token given:", token)
+    }
     target.push(token)
 }
 
@@ -27,6 +30,9 @@ let tokenize = (input, rules) => {
         throw new Error("tokenizer2000: string expected as first argument");
     }
 
+    if (typeof rules !== 'object') {
+        throw new Error("tokenizer2000: specify ruleset as an object");
+    }
 
     input = input.replace(/[ ]+/gm, "");    
 
@@ -67,14 +73,5 @@ let tokenize = (input, rules) => {
 
     return output;
 }
-
-let defaultRules = require("./ruleset").rules;
-
-let result = tokenize(`12 + 5*x*sin(x) + power(2, t(5))`, defaultRules)
-
-console.log(result)
-
-result.forEach(token => console.log(token.type, token.value))
-
 
 module.exports = tokenize;
