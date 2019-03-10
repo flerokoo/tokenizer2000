@@ -4,8 +4,5 @@
   "description": "",
   "main": "src/tokenizer.js",
   "author": "Emile Shodiev <emile.shodiev@yandex.ru> (http://shodiev.ru)",
-  "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.11"
-  }
+  "license": "ISC"
 }
