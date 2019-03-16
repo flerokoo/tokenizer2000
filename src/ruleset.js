@@ -47,6 +47,7 @@ let rules = {
             execute: ({ char, addToSequence, flushSequenceAs, insertToken }) => {
                 flushSequenceAs(sequenceTypes.NUMBERS, tokenTypes.LITERAL)
                 flushSequenceAs(sequenceTypes.LETTERS, tokenTypes.FUNCTION)
+                flushSequenceAs(sequenceTypes.OPERATORS, tokenTypes.OPERATOR)
                 insertToken({
                     type: tokenTypes.LEFT_PAREN,
                     value: char
@@ -88,7 +89,9 @@ let rules = {
         },
     ],
 
-    after: ({ flushSequenceAs, output }) => {
+    preprocess: input => input.replace(/[ ]+/g, ""),
+
+    postprocess: ({ flushSequenceAs, output }) => {
         flushSequenceAs(sequenceTypes.OPERATORS, tokenTypes.OPERATOR);
         flushSequenceAs(sequenceTypes.NUMBERS, tokenTypes.LITERAL);
         flushSequenceAs(sequenceTypes.LETTERS, tokenTypes.VARIABLE);
