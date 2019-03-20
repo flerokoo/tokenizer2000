@@ -6,6 +6,8 @@ Tiny simple lexical analyzer with a customizable set of rules.
 
 Just trying to put all the pieces of knowledge on how programming languages work together.
 
+I used it in my [mathematical expression evaluator](https://github.com/flerokoo/pi-walks-into-a-bar)
+
 ## Usage
 
 ```js
